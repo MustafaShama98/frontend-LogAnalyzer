@@ -109,12 +109,12 @@ function Dashboard() {
     const getFilenames = async () => {
 
         try {
-            const response = await fetch("http://localhost:5000/report/", {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: authHeader(),
-              },})
+            const response = await fetch("http://localhost:5000/admin/report/", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: authHeader(),
+                },})
             const jsonData = await response.json();
             if (jsonData.type === 'empty') { setFilesAppear(true); }
             if (jsonData.type === 'success') {
@@ -141,12 +141,12 @@ function Dashboard() {
     const [first, setFirst] = useState(false);
     const getRulesAndDates = async () => {
         try {
-            const response = await fetch("http://localhost:5000/report/" + fileObj.file_name, {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: authHeader(),
-              },
+            const response = await fetch("http://localhost:5000/admin/report/" + fileObj.file_name, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: authHeader(),
+                },
             });
             const jsonData = await response.json();
             if (jsonData.type === 'success') {
@@ -304,13 +304,13 @@ function Dashboard() {
             postHandlingData();
         }
     }, [sub]);
-const authHeader = useAuthHeader()
+    const authHeader = useAuthHeader()
     const postHandlingData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/report/getData", {
+            const response = await fetch("http://localhost:5000/admin/report/getData", {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json',
-                Authorization: authHeader(),},
+                    Authorization: authHeader(),},
                 body: JSON.stringify(fileObj)
             });
             console.log(fileObj);
@@ -387,8 +387,8 @@ const authHeader = useAuthHeader()
                                     <label>
                                         Select Rules:
                                         <Select className="custom-select" options={rulesOptions} isMulti={true} value={rulesSelected} onChange={handleChange}
-                                            menuPlacement="bottom"
-                                            menuPosition="fixed"
+                                                menuPlacement="bottom"
+                                                menuPosition="fixed"
                                         />
                                     </label>
                                 </div>

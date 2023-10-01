@@ -4,17 +4,19 @@ import ConfiquratorSidebar from '../../../ConfiquratorDashboard/comp/Confiqurato
 import AdminHeader from '../../../AdminDashboard/comp/AdminHeader';
 import Fetchdata from './getuserdata';
 import reportWebVitals from './reportWebVitals';
+import {useAuthUser} from "react-auth-kit";
 
 
 const DispatcherHome = (props) => {
   reportWebVitals();
-
+const auth = useAuthUser()
+    const role = auth().role
   return (
     <div className="App">
-    {props.role === "admin" ? <AdminSidebar /> : <ConfiquratorSidebar />}
+    {role === "admin" ? <AdminSidebar /> : <ConfiquratorSidebar />}
 
     <div className="App2">
-      {props.role === "admin" ? (
+      {role === "admin" ? (
         <AdminHeader role="Admin" />
       ) : (
         <AdminHeader role="Configurator" />

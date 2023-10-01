@@ -38,7 +38,7 @@ function Fetchdata() {
 
   useEffect(() => {
     // Fetch user data from the API
-    fetch("http://localhost:5000/admin/get", {
+    fetch("http://localhost:5000/admin/dashboard", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
